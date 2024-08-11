@@ -1,42 +1,107 @@
 #root {
-  /* max-width: 1280px; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
   margin: 0;
-  /* padding: 2rem; */
-  /* text-align: center; */
+  display: grid;
+  grid-template: 80px auto / auto;
+  grid-template-areas: 
+    "navigation-bar"
+    "main-container";
+
 }
 
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.navigationBar{
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5%;
+  grid-area: navigation-bar;
+  /* background-color: rgb(39, 76, 241); */
+  background-image: linear-gradient(490deg, #16753d, #090909);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.logo{
+  margin: auto auto auto 3%;
+  color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20%;
+  padding-right: 5%;
 }
 
-.card {
-  padding: 2em;
+li {
+  flex: 1 1 auto;
 }
 
-.read-the-docs {
-  color: #888;
+a {
+  color: gray;
+  text-decoration-line: none;
+}
+
+a:active {
+  color: gray;
+}
+
+a:hover {
+  color: white;
+}
+
+
+.main-container{
+  display: grid;
+  grid-area: main-container;
+  padding: 40px;
+}
+
+
+.productTile{
+  display: grid;
+  justify-content: center;
+  /* border: 1px solid gray; */
+  /* border-radius: 20px; */
+  padding: 25px 0px;
+  max-width: 300px;
+}
+
+.productTitle{
+  text-align: center;
+}
+
+.productImage{
+  object-fit: contain;
+  width: 200px;
+}
+
+.productPrice{
+  text-align: center;
+  
+}
+/* .addProductButton{
+
 } */
+
+.tile-bundle {
+  display: grid;
+  justify-content: center;
+  grid-template: 1fr / repeat(5, 1fr);
+  gap: 5%;
+}
+
+.quantityButton{
+  display: grid;
+  grid-template: 30px / 30px 60px 30px;
+  margin: 3px auto 10px;
+
+}
+
+.quantity{
+  font-size: 14px;
+  text-align: center;
+  margin: auto 0;
+  border: none;
+}
