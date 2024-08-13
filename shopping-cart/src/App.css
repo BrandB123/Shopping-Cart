@@ -61,42 +61,70 @@ a:hover {
 
 .productTile{
   display: grid;
-  justify-content: center;
-  /* border: 1px solid gray; */
+  justify-content: start;
+  /* grid-template: repeat(4, 1fr) / 1fr 1f r 1fr; */
+  grid-template: 35% 25% 15% / 1fr 1fr 1fr;
+  grid-template-areas: 
+    "productImage productTitle productTitle"
+    /* "productImage productDescription productDescription" */
+    "productImage productPrice productPrice"
+    "productImage quantityButton addProductButton";
+  /* border: 1px solid gray; */ 
   /* border-radius: 20px; */
   padding: 25px 0px;
-  max-width: 300px;
+  /* max-width: 300px; */
+  border-bottom: solid 2px rgb(225, 225, 225);
 }
 
 .productTitle{
-  text-align: center;
+  /* text-align: center; */
+  grid-area: productTitle;
+}
+
+.productDescription{
+  grid-area: productDescription;
 }
 
 .productImage{
   object-fit: contain;
   width: 200px;
+  grid-area: productImage;
+
 }
+
+img{
+  margin: auto;
+}
+
 
 .productPrice{
-  text-align: center;
+  /* text-align: center; */
+  grid-area: productPrice;
+
   
 }
-/* .addProductButton{
-
-} */
+.addProductButton{
+  grid-area: addProductButton;
+  height: 40px;
+  width: 150px;
+  border-radius: 20px;
+  border: solid 1px gray;
+  margin: 0 0 0 -50%;
+}
 
 .tile-bundle {
   display: grid;
   justify-content: center;
-  grid-template: 1fr / repeat(5, 1fr);
-  gap: 5%;
+  /* grid-template: 1fr / repeat(5, 1fr); */
+  grid-template: repeat(auto, 1fr) / 1fr;
+  gap: 40px;
 }
 
 .quantityButton{
   display: grid;
-  grid-template: 30px / 30px 60px 30px;
-  margin: 3px auto 10px;
-
+  grid-template: 40px / 40px 80px 40px;
+  /* margin: 3px auto 10px; */
+  grid-area: quantityButton;
 }
 
 .quantity{

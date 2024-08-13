@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function NavigationBar(){
   return (
     <nav className="navigationBar">
-        <h1 className="logo">Logo</h1>
+        <h1 className="logo">MyStore</h1>
         <ul>
             <li>
               <Link to='/'>Home</Link>
