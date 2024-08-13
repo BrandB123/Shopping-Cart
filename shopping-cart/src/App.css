@@ -10,6 +10,17 @@
 
 }
 
+.homePage{
+  display: grid;
+  justify-content: center;
+}
+
+.homePageContent{
+  width: 70%;
+  margin: 10% auto;
+  text-align: center;
+}
+
 
 .navigationBar{
   display: flex;

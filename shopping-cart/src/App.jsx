@@ -8,12 +8,12 @@ import NavigationBar from './NavigationBar.jsx'
 function App() {
 
   return (
-    <>
-      <NavigationBar />
-      <div className="main-container">
-        <h1>Come Back Soon!</h1>
+    <div>
+      <NavigationBar cartState={ null }/>
+      <div className="homePage">
+        <h1 className='homePageContent'>Check out our store to find everything you could need!</h1>
       </div>
-    </>
+    </div>
   )
 }
 

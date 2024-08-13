@@ -1,16 +1,13 @@
-// import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavigationBar from "./NavigationBar";
 import "./App.css"
-// import testImage from "./assets/pexels-michael-steinberg-95604-366551.jpg"
 
 
 export default function Products() {
-  // const [apiimage, setImage] = useState(null)
-  // const [apititle, setTitle] = useState(null)
-  // const [apiDescription, setDescription] = useState(null)
-  // const [apiprice, setPrice] = useState(null)
-  const [apiData, setData] = useState(null)
+  const [productData, setData] = useState(null)
+  const [cart, setCart] = useState(0)
+  const cartState = {cart, setCart}
+
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -19,67 +16,62 @@ export default function Products() {
               setData(json)
             })
   }, []);
-
-  if (apiData !== null){
-    console.log(apiData);
-
-  }
-
-
   return (
     <>
-      <NavigationBar />
+      <NavigationBar cartState={ cartState }/>
       <div className="main-container">
         <div className="tile-bundle">
-          {/* <APITile image={apiimage} title={apititle} description={apiDescription} price={apiprice}/> */}
-          { apiData !== null ?
-            apiData.map((item) => {
-              return <APITile key={item.id} image={item.image} title={item.title} description={item.Description} price={item.price}/> 
+          { productData !== null ?
+            productData.map((item) => {
+              return <APITile key={item.id} image={item.image} title={item.title} description={item.Description} price={item.price} cartState={cartState}/> 
             }) : <p>Loading...</p>}
-          {/* <Tile />
-          <Tile />
-          <Tile />
-          <Tile /> */}
         </div>
       </div>    
     </>
   )
 }
 
-// function Tile(){
-  
-//   return (
-//     <div className="productTile">
-//       <img className="productImage" src={ testImage } />
-//       <p className="productTitle">Gold Bars</p>
-//       <p className="productPrice">$2,500.00</p>
-//       <QuantityButton />
-//       <button className="addProductButton">Add to Cart</button>
-//     </div>
-//   )
-// }
 
+function APITile({image, title, description, price, cartState}){
+  const [quantity, setQuantity] = useState(1);
+  const quantityObj = {quantity, setQuantity}
 
-function APITile({image, title, description, price}){
-  
+  const addToCart = () => {
+    const newCartQuantity = cartState.cart + quantity
+    cartState.setCart(newCartQuantity)
+  }
+
   return (
     <div className="productTile">
       <img className="productImage" src={ image } />
       <p className="productTitle"> { title } </p>
-      {/* <p className="productDescription"> { description }</p> */}
       <p className="productPrice"> ${ price } </p>
-      <QuantityButton />
-      <button className="addProductButton">Add to Cart</button>
+      <QuantityButton quantityObj={ quantityObj }/>
+      <button className="addProductButton" onClick={addToCart}>Add to Cart</button>
     </div>
   )
 }
 
-function QuantityButton(){
+function QuantityButton({ quantityObj }){
+  
+  const increaseQuantity = () => {
+    quantityObj.setQuantity(quantityObj.quantity + 1)
+  }
+
+  const decreaseQuantity = () => {
+    if (quantityObj.quantity > 1){
+      quantityObj.setQuantity(quantityObj.quantity - 1)
+    }
+  }
+
+  const handleChange = () => {
+    return
+  }
   return(
     <div className="quantityButton">
-      <button>-</button>
-      <input className="quantity" value="0"/>
-      <button>+</button>
+      <button onClick={decreaseQuantity}>-</button>
+      <input className="quantity" value={quantityObj.quantity} onChange={ handleChange }/>
+      <button onClick={increaseQuantity}>+</button>
     </div>
   )
 }

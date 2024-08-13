@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
-
-
-export default function NavigationBar(){
+export default function NavigationBar({ cartState}){
   return (
     <nav className="navigationBar">
         <h1 className="logo">MyStore</h1>
@@ -14,7 +12,7 @@ export default function NavigationBar(){
               <Link to='products'>Products</Link>
             </li>
             <li>
-                <Link to='produts'>Cart</Link>
+                <Link to='products'>{ cartState !== null ? `Cart (${cartState.cart})` : `Cart`}</Link>
             </li>
         </ul>
     </nav>
